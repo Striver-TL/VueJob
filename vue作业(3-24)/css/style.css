@@ -1,0 +1,137 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+button:active {
+    opacity: .9;
+}
+
+body {
+    background: #efefef;
+}
+
+#app {
+    width: 1000px;
+    margin: 0 auto;
+    font-family: "Microsoft YaHei", Arial, Helvetica, sans-serif
+}
+
+h3.title {
+    margin: 20px;
+    font-size: 28px;
+    text-align: center;
+    font-weight: normal;
+}
+
+.date {
+    position: fixed;
+    top: 20px;
+    right: 50px;
+}
+
+.input {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    padding: 10px 0;
+    margin: 2em 0;
+    line-height: 50px;
+    font-size: 16px;
+    background: rgb(0, 137, 250);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .3);
+}
+
+.input input {
+    width: 120px;
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+}
+
+.input button {
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: inset 1px 1px rgba(255, 255, 255, .4), 1px 1px rgba(0, 0, 0, .3);
+    cursor: pointer;
+}
+
+.input button:first-child {
+    background: #f33;
+    border: 2px solid #f33;
+}
+
+.input button:last-child {
+    background: #3c3;
+    border: 2px solid #3c3;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .3);
+}
+
+table tr.change {
+    background: #ff3;
+    box-shadow: 0 0 5px rgba(255, 255, 0, .4);
+}
+
+table tr > * {
+    height: 35px;
+    padding: 5px 0;
+}
+
+table th,
+table tbody tr:not(:last-child) td {
+    border-bottom: 1px solid #fff;
+}
+
+table tr > *:not(:last-child) {
+    border-right: 1px solid #fff;
+}
+
+table thead {
+    color: #fff;
+    background: #333;
+}
+
+table th {
+    width: 130px;
+}
+
+table th:last-child {
+    width: 110px;
+}
+
+tbody > tr {
+    background: #ccc;
+}
+
+table td > button {
+    width: 50px;
+    height: 30px;
+    line-height: 20px;
+    border: 1px solid transparent;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 0 rgba(255, 255, 255, .7);
+    cursor: pointer;
+}
+
+.deletebtn {
+    background: #33f;
+    border-color: #33f;
+}
+
+.changebtn {
+    background: #3c3;
+    border-color: #3c3;
+}
+
+.cancelbtn {
+    background: #f33;
+    border-color: #f33;
+}

@@ -1,0 +1,33 @@
+.title {
+  padding: 0 20px;
+  line-height: 150px;
+  background: #ccc;
+  margin: 0;
+}
+
+.progress {
+  margin: 40px 0;
+}
+
+.add,
+.show {
+  width: 50%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.add span,
+.add input {
+    display: block;
+}
+
+.add span {
+    font-size: 16px;
+}
+
+.add input {
+    width: 100%;
+    font-size: 14px;
+    line-height: 30px;
+    margin: 5px 0 15px 0;
+}

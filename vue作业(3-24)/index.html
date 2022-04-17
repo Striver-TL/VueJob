@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>移动2032滕龙</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h3 class="title">学员管理系统</h3>
+        <div class="input">
+            <span>学生学号：<input type="text" @input="idInputRule" v-model="user.id" placeholder="请输入学号"></span>
+            <span>学生姓名：<input type="text" v-model="user.name" placeholder="请输入姓名"></span>
+            <span>学生班级：<input type="text" @input="classInputRule" v-model="user.classname" placeholder="请输入班级"></span>
+            <span>
+                <button @click="add" v-show="isChange === false">添加学生信息</button>
+                <button @click="toChange(isChange)" v-show="isChange !== false">修改学生信息</button>
+            </span>
+        </div>
+        <div class="info">
+            <table cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>学号</th>
+                        <th>姓名</th>
+                        <th>班级</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item, index in userinfo" :key="item" :class="isChange === index ? 'change' : ''">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.classname}}</td>
+                        <td>
+                            <button @click="del(index)" class="deletebtn">删除</button>
+                            <button @click="change(index)" class="changebtn" v-show="!(isChange === index)">修改</button>
+                            <button @click="init()" class="cancelbtn" v-show="isChange === index">取消</button>
+                        </td>
+                    </tr>
+                    <tr v-if="!userinfo.length">
+                        <td colspan="4">暂无学生信息</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="date"><span>{{nowDate}}</span></div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

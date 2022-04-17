@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>移动2032滕龙</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/vue.min.js"></script>
+</head>
+
+<body>
+    <!-- app -->
+    <div id="app" @mouseup="barMouseUpHandle" @selectstart.prevent>
+        <!-- 轮播图部分 -->
+        <div class="banner">
+            <!-- 轮播图内容 -->
+            <div class="banner-list">
+                <template v-for="item, index in bannerData" :key="index">
+                    <transition name="banner">
+                        <div v-show="bannerIndex === index">
+                            <div class="banner-item" :style="`background-image:url('images/${item.img}')`"></div>
+                            <div class="container" @mouseenter="bannerStopPlay" @mouseleave="bannerToPlay">
+                                <a :href="item.href">
+                                    <lazy-load :src="`images/${item.img}`" />
+                                </a>
+                            </div>
+                        </div>
+                    </transition>
+                </template>
+            </div>
+            <!-- 轮播图按钮 -->
+            <div class="banner-btn" @mouseenter="bannerStopPlay" @mouseleave="bannerToPlay">
+                <span v-for="item, index in bannerData" :key="index" @mouseenter="bannerCircleHandle(index)"
+                    :class="index === bannerIndex ? 'banner-checked' : ''"></span>
+            </div>
+            <!-- 轮播图侧边按钮 -->
+            <div class="banner-sidebtn container">
+                <span @mouseenter="bannerStopPlay" @mouseleave="bannerToPlay" class="banner-leftbtn"
+                    @click="toChangeBanner((bannerIndex - 1) < 0 ? bannerData.length - 1 : bannerIndex - 1)"></span>
+                <span @mouseenter="bannerStopPlay" @mouseleave="bannerToPlay" class="banner-rightbtn"
+                    @click="toChangeBanner((bannerIndex + 1) % bannerData.length)"></span>
+            </div>
+        </div>
+        <!-- 特价专区 -->
+        <div class="special">
+            <h3 class="product-title">特价专区</h3>
+            <div class="container">
+                <div id="j-special-container">
+                    <div class="special-list" id="j-special-list" :style="computeSpecialLeft">
+                        <div v-for="item, index in specialData" :key="index">
+                            <a :href="item.href" @mouseenter="specialStopPlay" @mouseleave="specialToPlay">
+                                <lazy-load class="special-img" :src="`images/${item.img}`">
+                                    <span class="special-desc" :title="item.desc">{{item.desc}}</span>
+                                </lazy-load>
+                                <span class="special-name" :title="item.name">{{item.name}}</span>
+                                <span class="special-price">{{item.price}}</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="j-special-bar" class="special-bar" :style="`border-right: solid ${this.special.barWidth}px transparent`">
+                        <span :style="`${computeSpecialBarLeft};width:${special.barWidth}px`" @mouseenter="specialStopPlay" @mouseleave="specialToPlay"
+                            @dragstart.prevent @dragenter.prevent @mousedown="barMouseDownHandle" @mousemove="barMouseMoveHandle"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 分类商品展示 -->
+        <div class="product">
+            <div class="container">
+                <h3 class="product-title">商品推荐</h3>
+                <!-- 分类商品导航条 -->
+                <div class="product-nav">
+                    <ul>
+                        <li v-for="item, index in productData" :key="index" @click="navItemClickHandle(index)"
+                            :class="showIndex === index ? 'checked' : ''">
+                            {{item.title}}
+                        </li>
+                    </ul>
+                </div>
+                <!-- 分类商品内容 -->
+                <div class="product-list">
+                    <ul>
+                        <li v-for="item, index in productShowData" :key="index">
+                            <a :href="item.href" :title="item.name">
+                                <span class="img">
+                                    <lazy-load :src="`images/${item.img}`" />
+                                </span>
+                                <span class="name" :title="item.name">{{ item.name }}</span>
+                                <span class="desc" :title="item.desc">{{ item.desc }}</span>
+                                <span class="price">
+                                    <span class="price-new">{{ item.price.toFixed(2) }}</span>
+                                    <span class="price-old" v-if="item.priceOld">{{ item.priceOld.toFixed(2) }}</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

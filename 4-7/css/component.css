@@ -1,0 +1,26 @@
+.motalbox {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .4);
+}
+
+.motalbox-content {
+    padding: 20px 10px;
+}
+
+.motalbox-close {
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("../images/close.png");
+    background-size: cover;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.motalbox-close:hover {
+    background-image: url("../images/close-hover.png");
+}
